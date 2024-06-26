@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
     } else if (command == "search") {
         if (argc < 5) {
             std::cerr << "Error: Not enough arguments for search command." << std::endl;
-            std::cerr << "Usage: program search <ra> <dec> <radius>" << std::endl;
+            std::cerr << "Usage: program search <catalog_folder> <ra> <dec> <radius>" << std::endl;
             return 1;
         }
         std::string gaia_dir= argv[2];

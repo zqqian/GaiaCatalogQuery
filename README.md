@@ -40,7 +40,7 @@ Due to memory limits, large catalogs such as Gaia DR3 need to be first split int
 ### Step 4
 After merging, you can query the Gaia catalog using the following command:
   ```shell
-  ./GaiaCatalogQuery search ra dec radius(degree)
+  ./GaiaCatalogQuery search <final_folder> <ra> <dec> <radius(degree)>
   ```
 The result will be saved in `/dev/shm/results.csv`.
 
