@@ -36,16 +36,17 @@ Due to memory limits, large catalogs such as Gaia DR3 need to be first split int
   ```shell
   ./GaiaCatalogQuery merge /home/user/gaia_temp/ /home/user/gaia_final/ 1000 20000000
   ```
+The final folder will have many `*.csv` files and `uniqlist.txt`.
 
 ### Step 4
 After merging, you can query the Gaia catalog using the following command:
   ```shell
-  ./GaiaCatalogQuery search <final_folder> <ra> <dec> <radius(degree)>
+  ./GaiaCatalogQuery search <final_folder> <ra> <dec> <radius(degree)> [output_dir] [output_name]
   ```
-The result will be saved in `/dev/shm/results.csv`.
+The result will be saved in `/dev/shm/results.csv` or  `[output_dir]/[output_name]`.
 
 ---
 
-If you find this tool helpful, please refer to the following paper:
+If you find my tool helpful, I would greatly appreciate it if you could cite this paper:
 
 Zhang, Qi-qian, Dong-wei Fan, and Chen-zhou Cui. "The Efficient Indexing and Fusion Algorithms for Large-scale Catalogs Based on File." Progress in Astronomy 41 (2023): 429-447. [https://ui.adsabs.harvard.edu/abs/2023PrA....41..429Z/abstract](https://ui.adsabs.harvard.edu/abs/2023PrA....41..429Z/abstract)

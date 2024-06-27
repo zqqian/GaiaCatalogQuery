@@ -10,7 +10,7 @@
 extern std::vector<int> query_disc(int Nside, double ra, double dec, double range, bool r);
 
 auto queryThreshold(std::string gaia_dir,double ra, double dec, double raidus, const std::string outputpath = "/dev/shm/", const std::string outname = "results.csv") {
-    ZQQ_AT_CHINA_VO::GaiaTest c("GAIAdr3", "no", 20000000,gaia_dir);
+    ZQQ_AT_CHINA_VO::GaiaTest c("GAIAdr3", "no", 20000000,gaia_dir,gaia_dir+"uniqlist.txt");
     auto r = c.QueryThreshold(ra, dec, raidus, 20000000);
     std::string content = "";
     content.append(c.header_line);
@@ -85,6 +85,7 @@ auto merge(std::string inputDir, std::string outputDir, size_t catalogSize, size
     c.mergeCatalog("");
     int InputTotRead = c.getCatlogSize();
     ZQQ_AT_CHINA_VO::Log() << "catalog read" << InputTotRead << " " << c.CatalogTotRead;
+    c.generateUniqlist(c.MergedDir);
     auto endclock = clock();
     double endtime = (double) (endclock - start) / CLOCKS_PER_SEC;
     ZQQ_AT_CHINA_VO::Log() << "Total time: " << endtime << "s";
@@ -94,7 +95,6 @@ auto merge(std::string inputDir, std::string outputDir, size_t catalogSize, size
 }
 
 int main(int argc, char *argv[]) {
-
     if (argc < 2) {
         std::cerr << "Error: No command provided. See manual" << std::endl;
         std::cerr << "Usage: GaiaCatalogQuery [command] [options]" << std::endl;
@@ -137,14 +137,16 @@ int main(int argc, char *argv[]) {
     } else if (command == "search") {
         if (argc < 5) {
             std::cerr << "Error: Not enough arguments for search command." << std::endl;
-            std::cerr << "Usage: program search <catalog_folder> <ra> <dec> <radius>" << std::endl;
+            std::cerr << "Usage: program search <catalog_folder> <ra> <dec> <radius> [output_path] [out_name]" << std::endl;
             return 1;
         }
         std::string gaia_dir= argv[2];
         double ra = std::stod(argv[3]);
         double dec = std::stod(argv[4]);
         double radius = std::stod(argv[5]);
-        queryThreshold(gaia_dir,ra, dec, radius);
+        std::string output_path = (argc > 6) ? argv[6] : "/dev/shm/";
+        std::string out_name = (argc > 7) ? argv[7] : "results.csv";
+        queryThreshold(gaia_dir, ra, dec, radius, output_path, out_name);
 
     } else if (command == "cross-match") {
         std::string inputCatalog= argv[2];

@@ -147,6 +147,8 @@ namespace ZQQ_AT_CHINA_VO {
 
         void readCatalogSingleFileFromTemp(int uniq);
 
+        void generateUniqlist(std::string directory_path="");
+
         std::vector<std::string> headerDeal();
 
         virtual bool RaDecDeal(Catalog::line &l);

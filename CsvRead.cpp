@@ -19,6 +19,7 @@
 #include <string>
 #include "CsvRead.h"
 #include "cmath"
+#include <filesystem>
 //#include "healpix/healpix.cpp"
 
 #if defined(_WIN32) || defined(_WIN64)
@@ -467,5 +468,24 @@ int ZQQ_AT_CHINA_VO::CsvRead::wirteCatalog(int nowlevel, int ipix, std::string D
 
 void ZQQ_AT_CHINA_VO::CsvRead::writeGAIA() {
 Log()<<"NO";
+}
+
+void ZQQ_AT_CHINA_VO::CsvRead::generateUniqlist( std::string directory_path) {
+    if (directory_path==""){
+        directory_path=MergedDir;
+    }
+    std::ofstream outfile(directory_path+"/uniqlist.txt");
+    if (!outfile.is_open()) {
+        std::cerr << "Unable to open" +directory_path+"/uniqlist.txt"<< std::endl;
+        return;
+    }
+    namespace fs = std::filesystem;
+
+    for (const auto &entry : fs::directory_iterator(directory_path)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".csv") {
+            std::string filename = entry.path().stem().string();
+            outfile << filename << std::endl;
+        }
+    }
 }
 

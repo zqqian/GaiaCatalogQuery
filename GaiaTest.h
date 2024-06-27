@@ -12,13 +12,13 @@ namespace ZQQ_AT_CHINA_VO {
 
         GaiaTest();
         GaiaTest(std::string name, std::string strindexType, long long MEMORY_SIZE_LIMIT);
-        GaiaTest(std::string name, std::string strindexType, long long MEMORY_SIZE_LIMIT,std::string filepath);
+        GaiaTest(std::string name, std::string strindexType, long long MEMORY_SIZE_LIMIT,std::string filepath,std::string filelist);
         std::vector<int>v;
         std::map<int,std::string>uniqlist;
         std::string header;
         void getHeader(std::string filename);
         long long HASH=1;
-        void loadUniqlist(const std::string& filepath="/redplus1/GaiaDR3/Spilted/",const std::string& filelist="/redplus1/GaiaDR3/uniqlist.txt");
+        void loadUniqlist(const std::string& filepath,const std::string& filelist);
         virtual  int wirteCatalog(int nowlevel, int ipix, std::string Dir);
         std::vector<std::string>NeedtoReadFileList(std::vector<int>pixlist);
         std::vector<std::string>QueryThreshold(double ra,double dec,double radiusInDegree,int limit=100);
