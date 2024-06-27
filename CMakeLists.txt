@@ -9,6 +9,6 @@ set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_BUILD_TYPE "Release")
 set(CMAKE_CXX_FLAGS_RELEASE"-Ofast")
 file(GLOB SRC_LIST  "./sofa/*.c")
-add_executable(CrossMatching ${SRC_LIST}  CatalogCalMaster.cpp CatalogCalMaster.h CsvRead.cpp CsvRead.h main.cpp CatalogMerge.cpp CatalogMerge.h Log.cpp Log.h magic_enum.h Catalog.cpp Catalog.h split.cpp split.h GaiaTest.cpp GaiaTest.h)
+add_executable(GaiaCatalogQuery ${SRC_LIST}  CatalogCalMaster.cpp CatalogCalMaster.h CsvRead.cpp CsvRead.h main.cpp CatalogMerge.cpp CatalogMerge.h Log.cpp Log.h magic_enum.h Catalog.cpp Catalog.h split.cpp split.h GaiaTest.cpp GaiaTest.h)
 
-target_link_libraries(CrossMatching PRIVATE )
+target_link_libraries(GaiaCatalogQuery PRIVATE )
