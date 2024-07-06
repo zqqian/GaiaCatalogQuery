@@ -13,7 +13,7 @@ The tool has already been applied in many astronomical projects and has demonstr
 ### Step 2
 * Clone this project:
   ```shell
-  git clone https://github.com/yourusername/GaiaCatalogQuery.git
+  git clone https://github.com/zqqian/GaiaCatalogQuery.git
   ```
 * Compile the project with the following commands:
   ```shell
